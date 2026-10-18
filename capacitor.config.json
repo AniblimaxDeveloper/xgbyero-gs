@@ -1,0 +1,7 @@
+{
+  "appId": "id.xgbyero.gs",
+  "appName": "XGBYERO GS",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": { "androidScheme": "https" }
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#09090d">
+  <meta name="description" content="XGBYERO GS — panel simulasi keamanan perangkat lokal.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>XGBYERO GS | Security Lab</title>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="logo.svg" alt="XGBYERO logo" class="brand-logo">
+        <div><strong>XGBYERO <span>GS</span></strong><small>SECURITY LAB</small></div>
+      </div>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav" aria-label="Navigasi utama">
+        <button class="nav-item active" data-page="dashboard"><span>◈</span> Dashboard</button>
+        <button class="nav-item" data-page="devices"><span>▣</span> Device Lab</button>
+        <button class="nav-item" data-page="simulator"><span>⌁</span> Bug Simulator</button>
+        <button class="nav-item" data-page="logs"><span>≋</span> Activity Logs</button>
+        <button class="nav-item" data-page="settings"><span>⚙</span> Settings</button>
+      </nav>
+      <div class="sidebar-bottom"><span class="status-dot"></span><div><b>LOCAL MODE</b><small>Tidak terhubung ke WhatsApp</small></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+        <div class="breadcrumb">XGBYERO GS <span>/</span> <b id="crumb">Dashboard</b></div>
+        <div class="top-right"><span class="safe-chip"><i></i> SIMULATION ONLY</span><div class="avatar">X</div></div>
+      </header>
+
+      <section class="page active" id="page-dashboard">
+        <div class="hero">
+          <div class="hero-copy"><div class="eyebrow"><span class="pulse"></span> SECURITY CONTROL CENTER</div>
+            <h1>WELCOME TO<br><em>XGBYERO GS</em></h1>
+            <p>Panel uji lokal untuk simulasi kondisi aplikasi, pencatatan aktivitas, dan pemeriksaan perangkat yang kamu miliki.</p>
+            <button class="primary-btn" data-go="simulator">Buka Simulator <span>↗</span></button>
+          </div>
+          <div class="hero-art"><div class="ring ring-a"></div><div class="ring ring-b"></div><img src="logo.svg" alt="Emblem XGBYERO" class="hero-logo"><div class="scanline"></div><span class="art-tag">XG / 001</span></div>
+        </div>
+        <div class="notice"><span class="notice-icon">!</span><div><b>Mode aman aktif</b><p>Semua aksi di panel ini hanya mengubah simulasi lokal. Panel tidak mengirim pesan, payload, atau perintah ke WhatsApp maupun perangkat lain.</p></div></div>
+        <div class="section-heading"><div><div class="eyebrow">OVERVIEW</div><h2>Panel Overview</h2></div><span class="live-label"><i></i> SYSTEM READY</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Perangkat uji lokal</span><span class="stat-icon">▣</span></div><strong id="deviceCount">0</strong><small>Perangkat yang ditambahkan di browser ini</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Simulasi dijalankan</span><span class="stat-icon">⌁</span></div><strong id="simulationCount">0</strong><small>Hitungan simulasi lokal</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Aktivitas tercatat</span><span class="stat-icon">≋</span></div><strong id="logCount">0</strong><small>Catatan yang tersimpan di perangkat ini</small></article>
+        </div>
+        <div class="section-heading compact"><div><div class="eyebrow">QUICK ACCESS</div><h2>Kontrol Cepat</h2></div></div>
+        <div class="quick-grid">
+          <button class="quick-card" data-go="devices"><span class="quick-icon">＋</span><b>Tambah perangkat uji</b><small>Buat entri perangkat lokal</small><span class="arrow">↗</span></button>
+          <button class="quick-card" data-go="simulator"><span class="quick-icon">⌁</span><b>Jalankan simulasi</b><small>Uji tampilan status error/recovery</small><span class="arrow">↗</span></button>
+          <button class="quick-card" data-go="logs"><span class="quick-icon">≋</span><b>Lihat activity logs</b><small>Tinjau aktivitas terbaru</small><span class="arrow">↗</span></button>
+        </div>
+      </section>
+
+      <section class="page" id="page-devices">
+        <div class="page-heading"><div class="eyebrow">LOCAL INVENTORY</div><h1>Device <em>Lab</em></h1><p>Kelola daftar perangkat uji yang kamu miliki. Data tersimpan lokal di browser/app ini.</p></div>
+        <div class="panel-card form-card"><div class="card-title"><span class="panel-symbol">＋</span><div><h3>Tambah perangkat uji</h3><p>Jangan masukkan data orang lain tanpa izin.</p></div></div>
+          <form id="deviceForm" class="form-grid"><label>Nama perangkat<input id="deviceName" required maxlength="50" placeholder="Contoh: HP pengujian saya"></label><label>Jenis perangkat<select id="deviceType"><option>Android</option><option>Emulator Android</option><option>Perangkat lain</option></select></label><label class="full">Catatan (opsional)<input id="deviceNotes" maxlength="120" placeholder="Catatan untuk pengujian pribadi"></label><div class="full form-actions"><button type="submit" class="primary-btn">＋ Tambahkan ke daftar</button></div></form>
+        </div>
+        <div class="section-heading"><div><div class="eyebrow">MY TEST DEVICES</div><h2>Daftar Perangkat</h2></div><span class="counter" id="deviceCounter">0 perangkat</span></div>
+        <div id="deviceList" class="device-list"></div>
+      </section>
+
+      <section class="page" id="page-simulator">
+        <div class="page-heading"><div class="eyebrow">OFFLINE TEST ENVIRONMENT</div><h1>Bug <em>Simulator</em></h1><p>Peragakan status bug/error dalam UI lokal untuk demo, dokumentasi, dan latihan pengujian.</p></div>
+        <div class="notice"><span class="notice-icon">!</span><div><b>Simulasi visual saja</b><p>Simulator ini tidak mengeksploitasi WhatsApp, tidak menghubungi nomor telepon, dan tidak membuat aplikasi pihak ketiga crash.</p></div></div>
+        <div class="simulator-grid"><div class="panel-card"><div class="card-title"><span class="panel-symbol">⌁</span><div><h3>Scenario Console</h3><p>Pilih skenario aman untuk ditampilkan.</p></div></div>
+          <label class="scenario-option"><input type="radio" name="scenario" value="render" checked><span><b>UI Render Warning</b><small>Contoh peringatan render aplikasi</small></span><span class="scenario-code">SIM-01</span></label>
+          <label class="scenario-option"><input type="radio" name="scenario" value="timeout"><span><b>Response Timeout</b><small>Contoh koneksi uji yang terlambat</small></span><span class="scenario-code">SIM-02</span></label>
+          <label class="scenario-option"><input type="radio" name="scenario" value="recovery"><span><b>Recovery Check</b><small>Contoh status pemulihan sistem</small></span><span class="scenario-code">SIM-03</span></label>
+          <button class="primary-btn wide" id="runSimulation">▶ Jalankan simulasi lokal</button>
+        </div><div class="panel-card terminal-card"><div class="terminal-head"><span><i></i><i></i><i></i></span><b>CONSOLE / LOCAL</b><span class="terminal-lock">▣ OFFLINE</span></div><div class="terminal-body" id="terminalOutput"><p class="terminal-dim">XGBYERO GS // SIMULATION CONSOLE</p><p class="terminal-dim">Menunggu perintah lokal…</p><p class="terminal-green">[READY] External network actions: disabled</p></div><div class="terminal-foot"><span class="status-dot"></span> Local sandbox active</div></div></div>
+      </section>
+
+      <section class="page" id="page-logs">
+        <div class="page-heading"><div class="eyebrow">AUDIT TRAIL</div><h1>Activity <em>Logs</em></h1><p>Riwayat tindakan yang dilakukan di panel lokal ini.</p></div>
+        <div class="logs-toolbar"><span class="counter" id="logsCounter">0 aktivitas</span><button class="outline-btn" id="exportLogs">↓ Ekspor JSON</button><button class="danger-btn" id="clearLogs">Hapus log</button></div>
+        <div class="panel-card log-table-wrap"><table class="log-table"><thead><tr><th>WAKTU</th><th>AKTIVITAS</th><th>DETAIL</th><th>STATUS</th></tr></thead><tbody id="logTableBody"></tbody></table><div id="emptyLogs" class="empty-state"><span>≋</span><b>Belum ada aktivitas</b><p>Aktivitas panel akan dicatat di sini.</p></div></div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-heading"><div class="eyebrow">PREFERENCES</div><h1>Panel <em>Settings</em></h1><p>Atur tampilan dan data lokal panel XGBYERO GS.</p></div>
+        <div class="panel-card settings-card"><div class="settings-row"><div><b>Nama panel</b><p>Label yang muncul di dashboard.</p></div><input id="panelName" value="XGBYERO GS" maxlength="32"></div>
+          <div class="settings-row"><div><b>Warna aksen</b><p>Pilih warna utama panel.</p></div><select id="accentSelect"><option value="red">Crimson Red</option><option value="purple">Phantom Purple</option><option value="cyan">Cyber Cyan</option></select></div>
+          <div class="settings-row"><div><b>Animasi glow</b><p>Efek cahaya latar pada UI.</p></div><label class="toggle"><input id="glowToggle" type="checkbox" checked><span></span></label></div>
+          <div class="settings-row"><div><b>Mode data</b><p>Perangkat dan logs tetap di penyimpanan lokal.</p></div><span class="safe-chip"><i></i> LOCAL ONLY</span></div>
+          <div class="settings-actions"><button class="primary-btn" id="saveSettings">Simpan pengaturan</button><button class="outline-btn" id="resetData">Reset semua data lokal</button></div>
+        </div>
+        <div class="notice subtle-notice"><span class="notice-icon">i</span><div><b>Privasi & keamanan</b><p>Jangan gunakan panel ini untuk mengganggu pihak lain. Hindari menyimpan kata sandi, token, atau data sensitif di catatan pengujian.</p></div></div>
+      </section>
+      <footer class="footer"><span>© 2026 XGBYERO GS</span><span>BUILT FOR LOCAL SECURITY SIMULATION <b>◆</b></span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
